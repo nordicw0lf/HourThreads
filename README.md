@@ -1,6 +1,8 @@
 # HourThreads
 
 <img src="app/src/main/res/drawable-xxxhdpi/hourthread_mark.png" alt="HourThreads neon hourglass icon" width="96">
+this app was made with the help of ChatGPT Codex, if it's not your thing, I totally understand :)
+this is just a free app designed to help people estimate their monthly salaries and keep track of shifts.
 
 HourThreads is a free, open-source Android app for tracking work hours and estimating pay across one or more jobs. Use it to clock in and out, record past shifts, and compare your own hours and pay estimates with your payslip.
 
