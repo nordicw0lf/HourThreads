@@ -1,0 +1,250 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 8,
+    "identityHash": "9574fc072043ccb2fea10c2a948d74fe",
+    "entities": [
+      {
+        "tableName": "preferences",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`currencyCode` TEXT NOT NULL, `id` INTEGER NOT NULL, `pendingLanguageTags` TEXT, `themeMode` TEXT NOT NULL DEFAULT 'system', `lightAccent` TEXT NOT NULL DEFAULT 'default', `darkAccent` TEXT NOT NULL DEFAULT 'default', `creditQuarterPoints` INTEGER NOT NULL DEFAULT 0, `includeIncomeTax` INTEGER NOT NULL DEFAULT 1, `hideIncomeTaxWarning` INTEGER NOT NULL DEFAULT 0, `startMinuteOfDay` INTEGER, `endMinuteOfDay` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "currencyCode",
+            "columnName": "currencyCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pendingLanguageTags",
+            "columnName": "pendingLanguageTags",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "themeMode",
+            "columnName": "themeMode",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'system'"
+          },
+          {
+            "fieldPath": "lightAccent",
+            "columnName": "lightAccent",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'default'"
+          },
+          {
+            "fieldPath": "darkAccent",
+            "columnName": "darkAccent",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'default'"
+          },
+          {
+            "fieldPath": "creditQuarterPoints",
+            "columnName": "creditQuarterPoints",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "includeIncomeTax",
+            "columnName": "includeIncomeTax",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "1"
+          },
+          {
+            "fieldPath": "hideIncomeTaxWarning",
+            "columnName": "hideIncomeTaxWarning",
+            "affinity": "INTEGER",
+            "notNull": true,
+            "defaultValue": "0"
+          },
+          {
+            "fieldPath": "manualShiftTimes.startMinuteOfDay",
+            "columnName": "startMinuteOfDay",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "manualShiftTimes.endMinuteOfDay",
+            "columnName": "endMinuteOfDay",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "jobs",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `hourlyRate` TEXT NOT NULL, `breakMinutes` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `payroll` TEXT, `currencyCode` TEXT NOT NULL DEFAULT 'ILS')",
+        "fields": [
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hourlyRate",
+            "columnName": "hourlyRate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "breakMinutes",
+            "columnName": "breakMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "payroll",
+            "columnName": "payroll",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "currencyCode",
+            "columnName": "currencyCode",
+            "affinity": "TEXT",
+            "notNull": true,
+            "defaultValue": "'ILS'"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "shifts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`jobId` INTEGER NOT NULL, `startMillis` INTEGER NOT NULL, `zoneId` TEXT NOT NULL, `hourlyRate` TEXT NOT NULL, `currencyCode` TEXT NOT NULL, `breakMinutes` INTEGER NOT NULL, `endMillis` INTEGER, `note` TEXT NOT NULL, `activeSlot` INTEGER, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `payroll` TEXT, FOREIGN KEY(`jobId`) REFERENCES `jobs`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "jobId",
+            "columnName": "jobId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "startMillis",
+            "columnName": "startMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "zoneId",
+            "columnName": "zoneId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hourlyRate",
+            "columnName": "hourlyRate",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currencyCode",
+            "columnName": "currencyCode",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "breakMinutes",
+            "columnName": "breakMinutes",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "endMillis",
+            "columnName": "endMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "note",
+            "columnName": "note",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "activeSlot",
+            "columnName": "activeSlot",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "payroll",
+            "columnName": "payroll",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_shifts_jobId",
+            "unique": false,
+            "columnNames": [
+              "jobId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_shifts_jobId` ON `${TABLE_NAME}` (`jobId`)"
+          },
+          {
+            "name": "index_shifts_activeSlot",
+            "unique": true,
+            "columnNames": [
+              "activeSlot"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_shifts_activeSlot` ON `${TABLE_NAME}` (`activeSlot`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "jobs",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "jobId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9574fc072043ccb2fea10c2a948d74fe')"
+    ]
+  }
+}
