@@ -16,6 +16,12 @@ HourThreads is a free, open-source Android app for tracking work hours and estim
 - **Move your data between phones.** Export a JSON backup with jobs, shifts, and app preferences. Restore it during setup or from the Log tab. Schedule daily, weekly, or monthly backups to a folder you choose in Android Files, with optional reminders if saving fails.
 - **Make it yours.** Choose a light, dark, or system theme and customize the accent colors. The interface is available in English, Hebrew, and Japanese.
 
+## Screenshots
+
+| Clock in and out | Shift log | Monthly summary |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/home.png" width="216" alt="HourThreads Home tab with a running shift timer and weekly totals"> | <img src="docs/screenshots/log.png" width="216" alt="HourThreads Log tab with shifts grouped by job"> | <img src="docs/screenshots/summary.png" width="216" alt="HourThreads monthly Summary with estimated pay and an hours chart"> |
+
 ## Privacy
 
 Jobs, shifts, and settings are stored on your device. HourThreads works offline, requires no account, and contains no ads or tracking. If you choose a cloud-backed folder for a backup, your storage provider handles that copy. The full policy is available in the app under **Info → Privacy policy**.
