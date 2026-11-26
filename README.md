@@ -2,7 +2,9 @@
 
 <img src="app/src/main/res/drawable-xxxhdpi/hourthread_mark.png" alt="HourThreads neon hourglass icon" width="96">
 this app was made with the help of ChatGPT Codex, if you dont like AI made apps, I totally understand :)
-/
+
+
+
 this is just a free app designed to help people estimate their monthly salaries and keep track of shifts.
 
 --------------
