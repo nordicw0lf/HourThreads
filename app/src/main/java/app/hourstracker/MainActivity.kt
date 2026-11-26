@@ -217,7 +217,7 @@ private fun HoursApp(
         }
     }
     LaunchedEffect(backupStatus) {
-        if (backupStatus == BackupStatus.Exported) dismissAutoBackupReminder(context)
+        if (backupStatus == BackupStatus.Exported) dismissAutoBackupNotification(context)
         if (backupStatus == BackupStatus.Restored) {
             selectedTab = HoursTab.Home
             tabState.removeState(HoursTab.Log.name)

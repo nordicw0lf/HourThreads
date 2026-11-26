@@ -211,8 +211,8 @@
     <string name="auto_backup_reminders_only">תזכורות בלבד</string>
     <string name="auto_backup_use_reminders">שימוש בתזכורות בלבד</string>
     <string name="auto_backup_folder_hint">בחרו תיקייה שניתן לכתוב אליה בבורר הקבצים של Android. אם השמירה תיכשל, HourThreads תוכל להזכיר לכם לייצא גיבוי ידנית.</string>
-    <string name="auto_backup_notification_hint">הפעילו התראות כדי לקבל תזכורת כשנדרש גיבוי ידני.</string>
-    <string name="auto_backup_allow_notifications">הפעלת תזכורות גיבוי</string>
+    <string name="auto_backup_notification_hint">הפעילו התראות כדי לקבל אישור כשהגיבוי נשמר ותזכורת כשנדרש גיבוי ידני.</string>
+    <string name="auto_backup_allow_notifications">הפעלת התראות גיבוי</string>
     <string name="auto_backup_next">מועד הגיבוי הבא · %1$s, %2$s</string>
     <string name="auto_backup_last_saved">גיבוי אוטומטי אחרון · %1$s, %2$s</string>
     <string name="auto_backup_last_reminder">מועד לגיבוי ידני · %1$s, %2$s</string>
@@ -221,7 +221,9 @@
     <string name="auto_backup_schedule_saved">לוח הזמנים נשמר.</string>
     <string name="auto_backup_schedule_error">לא ניתן היה לשמור את לוח הזמנים לגיבוי.</string>
     <string name="auto_backup_folder_unavailable">HourThreads לא הצליחה לשמור הרשאת כתיבה לתיקייה זו. בחרו תיקייה אחרת או השתמשו בתזכורות בלבד.</string>
-    <string name="auto_backup_channel">תזכורות גיבוי</string>
+    <string name="auto_backup_channel">התראות גיבוי</string>
+    <string name="auto_backup_notification_saved">הגיבוי של HourThreads הושלם</string>
+    <string name="auto_backup_notification_saved_body">גיבוי ה־JSON המתוזמן נשמר בתיקייה שבחרתם.</string>
     <string name="auto_backup_notification_failed">הגיבוי של HourThreads דורש את תשומת לבכם</string>
     <string name="auto_backup_notification_due">הגיע הזמן לגבות את HourThreads</string>
     <string name="auto_backup_notification_body">פתחו את גיבוי ושחזור כדי לייצא גיבוי JSON ידנית.</string>

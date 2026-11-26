@@ -213,8 +213,8 @@
     <string name="auto_backup_reminders_only">Reminders only</string>
     <string name="auto_backup_use_reminders">Use reminders only</string>
     <string name="auto_backup_folder_hint">Choose a writable folder in Android Files. If HourThreads cannot save there, it can remind you to export manually.</string>
-    <string name="auto_backup_notification_hint">Enable notifications to receive reminders when you need to back up manually.</string>
-    <string name="auto_backup_allow_notifications">Enable backup reminders</string>
+    <string name="auto_backup_notification_hint">Enable notifications to get a confirmation when a backup is saved and a reminder when you need to back up manually.</string>
+    <string name="auto_backup_allow_notifications">Enable backup notifications</string>
     <string name="auto_backup_next">Next scheduled time · %1$s, %2$s</string>
     <string name="auto_backup_last_saved">Last auto backup · %1$s, %2$s</string>
     <string name="auto_backup_last_reminder">Manual backup due · %1$s, %2$s</string>
@@ -223,7 +223,9 @@
     <string name="auto_backup_schedule_saved">Schedule saved.</string>
     <string name="auto_backup_schedule_error">Could not save the backup schedule.</string>
     <string name="auto_backup_folder_unavailable">HourThreads could not keep write access to this folder. Choose another folder or use reminders only.</string>
-    <string name="auto_backup_channel">Backup reminders</string>
+    <string name="auto_backup_channel">Backup notifications</string>
+    <string name="auto_backup_notification_saved">HourThreads backup complete</string>
+    <string name="auto_backup_notification_saved_body">Your scheduled JSON backup was saved to the selected folder.</string>
     <string name="auto_backup_notification_failed">HourThreads backup needs your attention</string>
     <string name="auto_backup_notification_due">Time to back up HourThreads</string>
     <string name="auto_backup_notification_body">Open Backup &amp; restore to export a JSON backup manually.</string>

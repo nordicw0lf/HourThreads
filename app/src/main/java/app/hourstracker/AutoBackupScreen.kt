@@ -85,13 +85,13 @@ internal fun AutoBackupScreen(onBack: () -> Unit) {
     var busy by remember { mutableStateOf(false) }
     var message by rememberSaveable { mutableStateOf<Int?>(null) }
     var error by rememberSaveable { mutableStateOf<Int?>(null) }
-    var remindersEnabled by remember { mutableStateOf(backupRemindersEnabled(context)) }
+    var notificationsEnabled by remember { mutableStateOf(backupNotificationsEnabled(context)) }
 
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
-        remindersEnabled = backupRemindersEnabled(context)
+        notificationsEnabled = backupNotificationsEnabled(context)
     }
     val notificationSettings = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        remindersEnabled = backupRemindersEnabled(context)
+        notificationsEnabled = backupNotificationsEnabled(context)
     }
     val folderPicker = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         val data = result.data
@@ -225,7 +225,7 @@ internal fun AutoBackupScreen(onBack: () -> Unit) {
             }
         }
 
-        if (enabled && !remindersEnabled) {
+        if (enabled && !notificationsEnabled) {
             AutoBackupNote(stringResource(R.string.auto_backup_notification_hint))
             TextButton(onClick = {
                 if (Build.VERSION.SDK_INT >= 33 && context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)

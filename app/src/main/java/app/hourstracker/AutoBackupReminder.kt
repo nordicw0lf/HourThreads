@@ -15,19 +15,19 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
 internal const val OPEN_BACKUP_OPTIONS = "app.hourstracker.OPEN_BACKUP_OPTIONS"
-private const val REMINDER_CHANNEL = "backup-reminders"
-private const val REMINDER_ID = 0x4855
+private const val BACKUP_CHANNEL = "backup-reminders"
+private const val BACKUP_NOTIFICATION_ID = 0x4855
 
-internal fun backupRemindersEnabled(context: Context): Boolean =
+internal fun backupNotificationsEnabled(context: Context): Boolean =
     NotificationManagerCompat.from(context).areNotificationsEnabled() &&
-        context.getSystemService(NotificationManager::class.java).getNotificationChannel(REMINDER_CHANNEL)
+        context.getSystemService(NotificationManager::class.java).getNotificationChannel(BACKUP_CHANNEL)
             ?.importance != NotificationManager.IMPORTANCE_NONE
 
-internal fun showAutoBackupReminder(context: Context, result: AutoBackupResult) {
+internal fun showAutoBackupNotification(context: Context, result: AutoBackupResult) {
     if (Build.VERSION.SDK_INT >= 33 &&
         context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
     ) return
-    if (!backupRemindersEnabled(context)) return
+    if (!backupNotificationsEnabled(context)) return
 
     val tags = LocaleManagerCompat.getApplicationLocales(context).toLanguageTags()
     val strings = if (tags.isEmpty()) context else {
@@ -38,22 +38,25 @@ internal fun showAutoBackupReminder(context: Context, result: AutoBackupResult) 
     val notifications = context.getSystemService(NotificationManager::class.java)
     notifications.createNotificationChannel(
         NotificationChannel(
-            REMINDER_CHANNEL, strings.getString(R.string.auto_backup_channel), NotificationManager.IMPORTANCE_DEFAULT,
+            BACKUP_CHANNEL, strings.getString(R.string.auto_backup_channel), NotificationManager.IMPORTANCE_DEFAULT,
         ),
     )
     val open = PendingIntent.getActivity(
-        context, REMINDER_ID, Intent(context, MainActivity::class.java).apply {
+        context, BACKUP_NOTIFICATION_ID, Intent(context, MainActivity::class.java).apply {
             action = OPEN_BACKUP_OPTIONS
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         }, PendingIntent.FLAG_IMMUTABLE,
     )
-    val title = if (result == AutoBackupResult.WriteFailed) {
-        R.string.auto_backup_notification_failed
-    } else {
-        R.string.auto_backup_notification_due
+    val title = when (result) {
+        AutoBackupResult.Saved -> R.string.auto_backup_notification_saved
+        AutoBackupResult.ManualReminder -> R.string.auto_backup_notification_due
+        AutoBackupResult.WriteFailed -> R.string.auto_backup_notification_failed
     }
-    val body = strings.getString(R.string.auto_backup_notification_body)
-    val reminder = NotificationCompat.Builder(context, REMINDER_CHANNEL)
+    val body = strings.getString(
+        if (result == AutoBackupResult.Saved) R.string.auto_backup_notification_saved_body
+        else R.string.auto_backup_notification_body,
+    )
+    val notification = NotificationCompat.Builder(context, BACKUP_CHANNEL)
         .setSmallIcon(R.drawable.ic_backup)
         .setContentTitle(strings.getString(title))
         .setContentText(body)
@@ -63,12 +66,12 @@ internal fun showAutoBackupReminder(context: Context, result: AutoBackupResult) 
         .setAutoCancel(true)
         .build()
     try {
-        notifications.notify(REMINDER_ID, reminder)
+        notifications.notify(BACKUP_NOTIFICATION_ID, notification)
     } catch (_: SecurityException) {
         // The permission can be revoked between checking it and posting.
     }
 }
 
-internal fun dismissAutoBackupReminder(context: Context) {
-    context.getSystemService(NotificationManager::class.java).cancel(REMINDER_ID)
+internal fun dismissAutoBackupNotification(context: Context) {
+    context.getSystemService(NotificationManager::class.java).cancel(BACKUP_NOTIFICATION_ID)
 }

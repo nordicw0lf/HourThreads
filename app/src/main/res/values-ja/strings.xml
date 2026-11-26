@@ -207,7 +207,7 @@
     <string name="auto_backup_reminders_only">リマインダーのみ</string>
     <string name="auto_backup_use_reminders">リマインダーのみにする</string>
     <string name="auto_backup_folder_hint">Androidのファイル選択画面で、書き込み可能なフォルダーを選択してください。保存できない場合は、手動で書き出すよう通知できます。</string>
-    <string name="auto_backup_notification_hint">手動バックアップが必要なときにリマインダーを受け取るには、通知を有効にしてください。</string>
+    <string name="auto_backup_notification_hint">バックアップ完了のお知らせや手動バックアップのリマインダーを受け取るには、通知を有効にしてください。</string>
     <string name="auto_backup_allow_notifications">バックアップの通知を有効にする</string>
     <string name="auto_backup_next">次回の予定 · %1$s %2$s</string>
     <string name="auto_backup_last_saved">前回の自動バックアップ · %1$s %2$s</string>
@@ -217,7 +217,9 @@
     <string name="auto_backup_schedule_saved">スケジュールを保存しました。</string>
     <string name="auto_backup_schedule_error">バックアップのスケジュールを保存できませんでした。</string>
     <string name="auto_backup_folder_unavailable">このフォルダーへの書き込み権限を保持できませんでした。別のフォルダーを選ぶか、リマインダーのみにしてください。</string>
-    <string name="auto_backup_channel">バックアップのリマインダー</string>
+    <string name="auto_backup_channel">バックアップの通知</string>
+    <string name="auto_backup_notification_saved">HourThreadsのバックアップが完了しました</string>
+    <string name="auto_backup_notification_saved_body">予定されていたJSONバックアップを選択したフォルダーに保存しました。</string>
     <string name="auto_backup_notification_failed">HourThreadsのバックアップを確認してください</string>
     <string name="auto_backup_notification_due">HourThreadsのバックアップの時間です</string>
     <string name="auto_backup_notification_body">バックアップと復元を開いて、JSONのバックアップを手動で書き出してください。</string>

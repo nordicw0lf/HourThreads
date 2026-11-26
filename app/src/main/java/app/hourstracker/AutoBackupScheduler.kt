@@ -77,7 +77,7 @@ internal class AutoBackupScheduler(context: Context) {
             throw failure
         }
         jobs.cancel(AUTO_BACKUP_JOB_ID)
-        dismissAutoBackupReminder(app)
+        dismissAutoBackupNotification(app)
         arm(next)
         if (previous.plan.folderUri != plan.folderUri) previous.plan.folderUri?.let { releaseFolder(Uri.parse(it)) }
     }
@@ -121,8 +121,7 @@ internal class AutoBackupScheduler(context: Context) {
             pendingDocument = null,
         )
         persist(next)
-        if (outcome == AutoBackupResult.Saved) dismissAutoBackupReminder(app)
-        else showAutoBackupReminder(app, outcome)
+        showAutoBackupNotification(app, outcome)
         arm(next)
     }
 

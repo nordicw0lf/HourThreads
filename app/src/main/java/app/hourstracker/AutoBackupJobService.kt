@@ -49,7 +49,7 @@ class AutoBackupJobService : JobService() {
     override fun onStopJob(params: JobParameters): Boolean {
         task?.cancel()
         val interrupted = params.extras.run()?.let { AutoBackupScheduler(this).currentRun(it) != null } == true
-        if (interrupted) showAutoBackupReminder(this, AutoBackupResult.WriteFailed)
+        if (interrupted) showAutoBackupNotification(this, AutoBackupResult.WriteFailed)
         return interrupted
     }
 

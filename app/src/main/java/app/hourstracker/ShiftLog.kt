@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.DropdownMenu
@@ -206,8 +205,9 @@ private fun LogFilters(
         DateTimeFormatter.ofPattern(DateFormat.getBestDateTimePattern(locale, "y"), locale)
     }
     val allJobs = stringResource(R.string.all_jobs)
+    val allMonths = stringResource(R.string.all_months)
     Column(Modifier.fillMaxWidth()) {
-        Column(Modifier.padding(start = 24.dp, top = 16.dp, end = 24.dp)) {
+        Column(Modifier.padding(start = 24.dp, top = 16.dp, end = 24.dp, bottom = 4.dp)) {
             PageTitle(stringResource(R.string.log)) {
                 IconButton(onClick = onBackup) {
                     Icon(painterResource(R.drawable.ic_backup), contentDescription = stringResource(R.string.backup_title))
@@ -230,22 +230,11 @@ private fun LogFilters(
                     modifier = Modifier.weight(1f),
                 )
             }
-        }
-        LazyRow(
-            modifier = Modifier.fillMaxWidth(),
-            contentPadding = PaddingValues(horizontal = 24.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            item {
-                LedgerFilterChip(stringResource(R.string.all_months), month == null, { onMonthChange(null) })
-            }
-            items(Month.entries, key = { it.value }) { option ->
-                LedgerFilterChip(
-                    option.getDisplayName(TextStyle.FULL_STANDALONE, locale),
-                    month == option,
-                    { onMonthChange(option) },
-                )
-            }
+            LogFilterMenu(
+                value = month, options = listOf(null) + Month.entries,
+                label = { it?.getDisplayName(TextStyle.FULL_STANDALONE, locale) ?: allMonths },
+                onSelect = onMonthChange,
+            )
         }
         HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
     }
